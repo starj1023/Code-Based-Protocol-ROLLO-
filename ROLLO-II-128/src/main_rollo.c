@@ -21,9 +21,9 @@ int Authentication(unsigned char *Deviceid, unsigned char *sk, unsigned char *pk
 
 int main() {
   printf("\n");
-  printf("*******************\n");
-  printf("**** ROLLO-%d ****\n", PARAM_SECURITY);
-  printf("*******************\n");
+  printf("**********************************\n");
+  printf("**** ROLLO-%d Secure Protocol ****\n", PARAM_SECURITY);
+  printf("**********************************\n");
 
   
   unsigned char Deviceid[2] = {0xab,0xcd};
@@ -43,10 +43,8 @@ int main() {
   syscall(318, seed, 48, 0);
   randombytes_init(seed, NULL, 256);
     
-  clock_t t1 = clock();
   crypto_kem_keypair(Spk, Ssk);
   crypto_kem_keypair(Dpk, Dsk);
-  clock_t t2 = clock();
 
   result = Registration(Deviceid, Spk, Ssk, Dpk, Dsk);
   printf("Registration Result : %d (1:Succeed, 0:Failed)\n", result);
